@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const teams = useSelector((state) => state.teams);
+
+  const handleAddTeam = () => {
+    // const { ipcRenderer, remote } = require("electron");
+
+    dispatch({
+      type: "ADD_TEAM",
+      payload: { name: "Team Name", logo: "Team Logo" },
+    });
+    console.log("ipcRenderer", window);
+    // window.ipcRenderer.send("open-add-team");
+  };
+
+  const handleAddParticipant = () => {
+    window.ipcRenderer.send("open-add-participant", teams);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to the Racing App</h1>
+      <button onClick={handleAddTeam}>Add Team</button>
+      <button onClick={handleAddParticipant}>Add Participant</button>
     </div>
   );
-}
+};
 
 export default App;
