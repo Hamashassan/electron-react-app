@@ -23,6 +23,7 @@ function AddParticipant() {
     console.log("Participant Name:", participantName);
     console.log("Selected Team:", selectedTeam);
     console.log("Is Team Captain:", isTeamCaptain);
+    window.ipcRenderer.send("submit-add-participant", { participantName, selectedTeam, isTeamCaptain });
     // Reset the form
     setParticipantName("");
     setSelectedTeam("");

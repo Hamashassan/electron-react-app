@@ -1,5 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Main from './Main';
+import AddParticipant from "./AddParticipant";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,11 +24,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome to the Racing App</h1>
-      <button onClick={handleAddTeam}>Add Team</button>
-      <button onClick={handleAddParticipant}>Add Participant</button>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/add-participant" element={<AddParticipant />} />
+      </Routes>
+    </Router>
   );
 };
 
