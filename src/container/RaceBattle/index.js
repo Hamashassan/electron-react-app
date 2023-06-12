@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./styles.css";
 
 function RaceBattle() {
   const [data, setData] = useState({});
@@ -23,9 +24,14 @@ function RaceBattle() {
 
   return (
     <div>
-      <p>hi</p>
-      {JSON.stringify(data)}
-      <button onClick={onPress}>Send data to scoreboard</button>
+      {/* <p>hi</p> */}
+      {/* {JSON.stringify(data)} */}
+      {/* <button onClick={onPress}>Send data to scoreboard</button> */}
+
+      <div className="participant">
+        <p>Team</p>
+        <p>Name</p>
+      </div>
     </div>
   );
 }
