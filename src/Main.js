@@ -19,7 +19,7 @@ const Main = () => {
 
   const handleAddParticipant = () => {
     console.log("handleaddparticipants");
-    window.ipcRenderer.send("open-add-participant");
+    window.ipcRenderer.send("open-participants");
   };
 
   window.ipcRenderer.on("participants", (result) => {
@@ -54,7 +54,7 @@ const Main = () => {
       <button onClick={handleCreateRace}>Create Race</button>
       <button onClick={handleRaces}>Races</button>
       <p>{participant?.participantName}</p> */}
-      <button onClick={handleAddParticipant}>Add Participant</button>
+      <button onClick={handleAddParticipant}>Participant</button>
       <button onClick={onPressRaces}>All Races</button>
       <button onClick={onPressScoreboard}>Scoreboard</button>
       <p>{participant?.participantName}</p>
