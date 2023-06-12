@@ -1,0 +1,17 @@
+.main-item {
+  flex-direction: row;
+  display: flex;
+  background-color: antiquewhite;
+  padding: 10px;
+  margin: 5px;
+}
+
+.paragraph-text {
+  /* font-weight: bold; */
+  /* color: beige; */
+  /* background-color: red; */
+  /* display: flex; */
+  /* background-color: red; */
+  flex: auto;
+  text-align: center;
+}
