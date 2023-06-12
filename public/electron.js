@@ -210,7 +210,9 @@ ipcMain.on("open-battle", (event, data) => {
   createRaceBattleWindow();
   console.log("data", data);
   // console.log("raceBattleWindow", mainWindow.webContents);
-  raceBattleWindow.webContents.send("race-data", data);
+  raceBattleWindow.webContents.on('did-finish-load', (event) => {
+    raceBattleWindow.webContents.send("race-data", data);
+  });
   // console.log("Add Team:", teams);
 });
 
