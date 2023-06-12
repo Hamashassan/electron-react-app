@@ -23,11 +23,17 @@ function RaceBattle() {
   };
 
   return (
-    <div>
+    <div className="team-container">
       {/* <p>hi</p> */}
       {/* {JSON.stringify(data)} */}
       {/* <button onClick={onPress}>Send data to scoreboard</button> */}
+      {data && data.participants && data.participants.map((participant) =>
+        <div className="participant">
+          <p>{participant.team}</p>
+          <p>{participant.name}</p>
+        </div>
 
+      )}
       <div className="participant">
         <p>Team</p>
         <p>Name</p>
