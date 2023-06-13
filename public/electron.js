@@ -2,7 +2,7 @@ const electron = require("electron");
 const { app, BrowserWindow, ipcMain } = electron;
 const isDev = require("electron-is-dev");
 const path = require("path");
-
+const url = require('url');
 let mainWindow;
 let addparticipantWindow;
 let createRaceWindow;
@@ -20,6 +20,7 @@ function createWindow() {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: true,
+      devTools: true,
       preload: path.join(__dirname, "preload.js"), // Path to the preload.js file
     },
   });
@@ -64,7 +65,7 @@ function createaddparticipantWindow() {
   addparticipantWindow.loadURL(
     isDev
       ? "http://localhost:3000/add-participant"
-      : `file://${path.join(__dirname, "../build/index.html/add-participant")}`
+      : `file://${path.join(__dirname, "../build/index.html/#/add-participant")}`
   );
 
   addparticipantWindow.on("closed", () => {
@@ -141,7 +142,7 @@ function createRacesWindow() {
   racesWindow.loadURL(
     isDev
       ? "http://localhost:3000/races"
-      : `file://${path.join(__dirname, "../build/index.html/add-participant")}`
+      : `file://${path.join(__dirname, "../build/index.html/#/add-participant")}`
   );
 
   racesWindow.on("closed", () => {
@@ -169,9 +170,9 @@ function createsSoreboardWindow() {
 
   scoreboardWindow.loadURL(
     isDev
-      ? "http://localhost:3000/scoreboard"
-      : `file://${path.join(__dirname, "../build/index.html/add-participant")}`
-  );
+      ? "http://localhost:3000/#/scoreboard"
+      : `file://${__dirname}/index.html#/scoreboard`);
+
 
   scoreboardWindow.on("closed", () => {
     addparticipantWindow = null;
@@ -199,7 +200,7 @@ function createRaceBattleWindow() {
   raceBattleWindow.loadURL(
     isDev
       ? "http://localhost:3000/battle"
-      : `file://${path.join(__dirname, "../build/index.html/battle")}`
+      : `file://${path.join(__dirname, "../build/index.html/#/battle")}`
   );
 
   raceBattleWindow.on("closed", () => {
@@ -238,7 +239,7 @@ function createParticipantsWindow() {
   participantsWindow.loadURL(
     isDev
       ? "http://localhost:3000/participants"
-      : `file://${path.join(__dirname, "../build/index.html/participants")}`
+      : `file://${path.join(__dirname, "../build/index.html/#/participants")}`
   );
 
   participantsWindow.on("closed", () => {

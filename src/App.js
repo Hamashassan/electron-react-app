@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Main from "./Main";
 import AddParticipant from "./AddParticipant";
 import AllRaces from "./container/AllRaces";
@@ -30,9 +30,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route exact path="/" element={<Main />} />
         <Route path="/add-participant" element={<AddParticipant />} />
-        <Route path="/races" element={<AllRaces />} />
+        <Route exact path="/races" element={<AllRaces />} />
         <Route path="/battle" element={<RaceBattle />} />
         <Route path="/scoreboard" element={<Scoreboard />} />
         <Route path="/participants" element={<Participants />} />

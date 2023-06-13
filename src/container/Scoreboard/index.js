@@ -58,6 +58,8 @@ function Scoreboard() {
   const [data, setData] = useState(initalData);
   const [data2, setDat2] = useState({});
 
+  window.ipcRenderer.removeAllListeners('race-result');
+
   window.ipcRenderer.on("race-result", (result) => {
     console.log("race-result", result);
 
