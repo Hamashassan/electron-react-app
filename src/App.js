@@ -6,6 +6,7 @@ import AddParticipant from "./AddParticipant";
 import AllRaces from "./container/AllRaces";
 import RaceBattle from "./container/RaceBattle";
 import Scoreboard from "./container/Scoreboard";
+import Participants from "./container/Participants";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/races" element={<AllRaces />} />
         <Route path="/battle" element={<RaceBattle />} />
         <Route path="/scoreboard" element={<Scoreboard />} />
+        <Route path="/participants" element={<Participants />} />
       </Routes>
     </Router>
   );

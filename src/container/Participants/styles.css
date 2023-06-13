@@ -12,8 +12,9 @@
   /* background-color: red; */
   /* display: flex; */
   /* background-color: red; */
-  flex: auto;
-  text-align: center;
+  /* flex: auto; */
+  /* text-align: center; */
+  width: 100px;
 }
 
 .title {

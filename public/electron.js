@@ -10,11 +10,12 @@ let createRaceWindow;
 let racesWindow;
 let scoreboardWindow;
 let raceBattleWindow;
+let participantsWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
@@ -210,7 +211,7 @@ ipcMain.on("open-battle", (event, data) => {
   createRaceBattleWindow();
   console.log("data", data);
   // console.log("raceBattleWindow", mainWindow.webContents);
-  raceBattleWindow.webContents.on('did-finish-load', (event) => {
+  raceBattleWindow.webContents.on("did-finish-load", (event) => {
     raceBattleWindow.webContents.send("race-data", data);
   });
   // console.log("Add Team:", teams);
@@ -222,8 +223,29 @@ ipcMain.on("send-race-result", (event, data) => {
   scoreboardWindow.webContents.send("race-result", data);
 });
 
-// ipcMain.on("submit-add-participant", (event, team) => {
-//   // mainWindow.webContents.send("open-add-team");
-//   console.log("submit-add-participant", team);
-//   mainWindow.webContents.send("participants", team);
-// });
+function createParticipantsWindow() {
+  participantsWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"), // Path to the preload.js file
+    },
+  });
+
+  participantsWindow.loadURL(
+    isDev
+      ? "http://localhost:3000/participants"
+      : `file://${path.join(__dirname, "../build/index.html/participants")}`
+  );
+
+  participantsWindow.on("closed", () => {
+    raceBattleWindow = null;
+  });
+}
+
+ipcMain.on("open-participants", (event, data) => {
+  createParticipantsWindow();
+});

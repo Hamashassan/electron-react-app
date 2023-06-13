@@ -10,7 +10,7 @@ const initalData = [
     points: 20,
     racesPlayed: 0,
     color: "yellow",
-    id: 2,
+    id: 1,
   },
   {
     image: "",
@@ -20,7 +20,7 @@ const initalData = [
     points: 0,
     racesPlayed: 0,
     color: "#99cc33",
-    id: 1,
+    id: 2,
   },
   {
     image: "",
@@ -58,6 +58,8 @@ function Scoreboard() {
   const [data, setData] = useState(initalData);
   const [data2, setDat2] = useState({});
 
+  window.ipcRenderer.removeAllListeners('race-result');
+
   window.ipcRenderer.on("race-result", (result) => {
     console.log("race-result", result);
 
@@ -76,7 +78,7 @@ function Scoreboard() {
 
   return (
     <div>
-      Scoreboard
+      <p className="title">Scoreboard</p>
       <div className="container">
         <p>Position</p>
         <p style={{ width: 150 }}>Team</p>
@@ -99,7 +101,7 @@ function Scoreboard() {
             </div>
           );
         })}
-      {JSON.stringify(data2)}
+      <p>{JSON.stringify(data)}</p>
     </div>
   );
 }
